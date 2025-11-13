@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ingreso al Sistema - Veterinaria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e7e7ff;
+    }
+    .login-container {
+      background: #fff;
+      max-width: 400px;
+      margin: 60px auto;
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: 0 0 14px #bbc;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 2px;
+      margin-bottom: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .error {
+      color: #b00;
+      margin-bottom: 10px;
+    }
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background: #4c7aad;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background: #375980;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2 style="text-align:center;">Iniciar Sesión</h2>
+    <form id="loginForm" autocomplete="off">
+      <label for="user">Usuario</label>
+      <input type="text" id="user" name="user" maxlength="32" required autocomplete="username">
+
+      <label for="pass">Contraseña</label>
+      <input type="password" id="pass" name="pass" maxlength="64" required autocomplete="current-password">
+
+      <label for="rol_id">Rol</label>
+      <select id="rol_id" name="rol_id" required>
+        <option value="">Cargando roles...</option>
+      </select>
+
+      <div class="error" id="errorMsg"></div>
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    const supabase = createClient('https://qsaowtibdsouszwyupvl.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzYW93dGliZHNvdXN6d3l1cHZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyMDE1NDYsImV4cCI6MjA3Nzc3NzU0Nn0.xtW53Uh4qq6XeEUoz6_eiAJN-NbRAL82rJA15FRydk8');
+
+    async function cargarRoles() {
+      const { data, error } = await supabase.from('roles').select('*');
+      const select = document.getElementById('rol_id');
+      select.innerHTML = '<option value="">Seleccione el rol</option>';
+      if (error) return alert('Error al cargar roles');
+
+      data.forEach(r => {
+        const option = document.createElement('option');
+        option.value = r.id;
+        option.textContent = r.nombre;
+        select.appendChild(option);
+      });
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const user = document.getElementById('user').value.trim();
+      const pass = document.getElementById('pass').value.trim();
+      const rol_id = +document.getElementById('rol_id').value;
+      const errorMsg = document.getElementById('errorMsg');
+
+      if (!user || !pass || !rol_id) {
+        errorMsg.textContent = 'Todos los campos son obligatorios';
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from('usuarios')
+        .select('*, roles(nombre)')
+        .eq('user', user)
+        .eq('pass', pass)
+        .eq('rol_id', rol_id)
+        .single();
+
+      if (error || !data) {
+        errorMsg.textContent = 'Credenciales incorrectas o rol no válido';
+        return;
+      }
+
+      // Redirección según el nombre del rol
+      const rolNombre = data.roles?.nombre;
+      if (rolNombre === 'Administrador') {
+        location.href = 'admin/index.html';
+      } else if (rolNombre === 'Recepcionista') {
+        location.href = 'recepcion/index.html';
+      } else {
+        location.href = 'index.html';
+      }
+    });     
+
+    cargarRoles();
+  </script>
+    <!-- SOLO estos dos scripts -->
+  <script src="../controlador/config.js"></script>
+  <script type="module" src="../controlador/login.js"></script>
+
+</body>
+</html>

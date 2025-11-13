@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="UTF-8"><title>Solicitudes - Admin</title>
+<link rel="stylesheet" href="../modelo/css/stiles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></head>
+<body class="index">
+  <div class="sidebar"><h2>Admin - Solicitudes</h2><nav>
+    <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a href="clientes.html"><i class="fa-solid fa-user"></i> Clientes</a>
+    <a href="mascotas.html"><i class="fa-solid fa-dog"></i> Mascotas</a>
+    <a href="cuentas.html"><i class="fa-solid fa-user-gear"></i> Cuentas</a>
+    <a href="servicios.html"><i class="fa-solid fa-briefcase"></i> Servicios</a>
+    <a href="#" onclick="logout()">Cerrar sesión</a>
+  </nav></div>
+  <div class="panel"><header><h1>Solicitudes de acceso</h1></header><section id="list"></section></div>
+<script>
+const logged = JSON.parse(localStorage.getItem('v_logged')||'null');
+if (!logged || logged.role !== 'administrador') { alert('Acceso restringido.'); window.location.href='login.html'; }
+function logout(){ localStorage.removeItem('v_logged'); window.location.href='login.html'; }
+function loadRequests(){ const list = JSON.parse(localStorage.getItem('v_requests')||'[]'); const el = document.getElementById('list'); if (list.length===0) el.innerHTML='<p>No hay solicitudes.</p>'; else { let html='<table class="table"><tr><th>Nombre</th><th>Usuario</th><th>Rol</th><th>Fecha</th><th>Acciones</th></tr>'; list.forEach((r,i)=>{ html += `<tr><td>${r.fullname}</td><td>${r.username}</td><td>${r.role}</td><td>${new Date(r.date).toLocaleString()}</td><td><button onclick="approve(${i})">Aprobar</button> <button onclick="reject(${i})">Rechazar</button></td></tr>` }); html += '</table>'; el.innerHTML = html; } }
+function approve(i){ const list = JSON.parse(localStorage.getItem('v_requests')||'[]'); const r = list.splice(i,1)[0]; const users = JSON.parse(localStorage.getItem('v_users')||'[]'); users.push({username: r.username, password: 'changeme123', role: r.role}); localStorage.setItem('v_users', JSON.stringify(users)); localStorage.setItem('v_requests', JSON.stringify(list)); loadRequests(); alert('Usuario creado con contraseña temporal: changeme123');}
+function reject(i){ const list = JSON.parse(localStorage.getItem('v_requests')||'[]'); list.splice(i,1); localStorage.setItem('v_requests', JSON.stringify(list)); loadRequests();}
+loadRequests();
+</script>
+</body>
+</html>

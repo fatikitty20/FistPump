@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Recepción</title>
+  <link rel="stylesheet" href="../modelo/css/stiles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="index">
+  <div class="sidebar">
+    <h2>Recepcionista</h2>
+    <nav>
+      <a href="clientes.html"><i class="fa-solid fa-user"></i> Clientes</a>
+      <a href="mascotas.html"><i class="fa-solid fa-dog"></i> Mascotas</a>
+      <a href="#" onclick="logout()">Cerrar sesión</a>
+    </nav>
+  </div>
+  <div class="panel">
+    <header><button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <h1>Panel de Recepción</h1>
+    </header>
+    <section>
+      <p>Bienvenido/a. Usa el menú para navegar.</p>
+    </section>
+  </div>
+  <script>
+
+    function logout() { localStorage.removeItem('v_logged'); window.location.href = 'login.html'; }
+    function toggleMenu() { const sidebar = document.querySelector(' .sidebar'); sidebar.style.display = sidebar.style.display === 'none' ? 'flex' : 'none'; }
+    const logged = JSON.parse(localStorage.getItem('v_logged') || 'null');
+    if (!logged || logged.role !== 'recepcionista') { alert('Acceso restringido.'); window.location.href = 'login.html'; }
+  </script>
+</body>
+
+</html>

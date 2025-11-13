@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Solicitar acceso</title>
+  <link rel="stylesheet" href="../modelo/css/stiles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="index">
+  <div class="login-card">
+    <h2>Solicitar acceso</h2>
+    <form id="reqForm">
+      <label>Nombre completo</label><input type="text" id="fullname" required>
+      <label>Usuario deseado</label><input type="text" id="username" required>
+      <label>Rol solicitado</label>
+      <select id="role"><option value="recepcionista">Recepcionista</option><option value="administrador">Administrador</option></select>
+      <button type="submit">Enviar solicitud</button>
+    </form>
+    <p><a href="login.html">Volver al login</a></p>
+  </div>
+
+<script>
+document.getElementById('reqForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const fullname = document.getElementById('fullname').value.trim();
+  const username = document.getElementById('username').value.trim();
+  const role = document.getElementById('role').value;
+  const requests = JSON.parse(localStorage.getItem('v_requests') || '[]');
+  requests.push({fullname:fullname, username:username, role:role, date: new Date().toISOString()});
+  localStorage.setItem('v_requests', JSON.stringify(requests));
+  alert('Solicitud enviada. Pide al administrador que revise las solicitudes.');
+  window.location.href = 'login.html';
+});
+</script>
+</body>
+</html>

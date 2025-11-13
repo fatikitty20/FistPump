@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Veterinary - Servicios</title>
+  <link rel="stylesheet" href="../modelo/css/stiles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+</head>
+<body class="servicios">
+  <div class="sidebar">
+    <h2>Servicios</h2>
+    <nav>
+      <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="clientes.html"><i class="fa-solid fa-user"></i> Clientes</a>
+      <a href="mascotas.html"><i class="fa-solid fa-dog"></i> Mascotas</a>
+      <a href="cuentas.html"><i class="fa-solid fa-user-gear"></i> Cuentas</a>
+    </nav>
+    <footer><p>Veterinaria I LOVE ANIMALS © 2025</p></footer>
+  </div>
+
+  <div class="panel">
+    <header>
+      <h1><i class="fa-solid fa-briefcase-medical"></i> Gestión de Servicios</h1>
+      <button class="menu-toggle" type="button"><i class="fa-solid fa-bars"></i></button>
+    </header>
+
+    <div style="margin: 1rem 0;">
+      <button onclick="location.href='add_servicio.html'" class="btn-agregar">
+        <i class="fa-solid fa-plus"></i> Agregar Servicio
+      </button>
+    </div>
+
+    <div style="margin: 1rem 0;">
+      <label for="buscarNombre"><i class="fa-solid fa-magnifying-glass"></i> Buscar por nombre:</label>
+      <input type="text" id="buscarNombre" placeholder="Ej. Vacunación">
+    </div>
+
+    <table id="tablaServicios">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Costo</th>
+          <th>Duración (min)</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <footer><p>@ FistPump, 2025</p></footer>
+  </div>
+
+  <!-- Config con tus llaves -->
+  <script src="../controlador/config.js"></script>
+  <!-- Lógica de servicios -->
+  <script type="module" src="../controlador/servicios.js"></script>
+</body>
+</html>

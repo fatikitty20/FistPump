@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Veterinary - Mascotas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../modelo/css/stiles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body class="mascotas">
+  <div class="sidebar">
+    <h2>Mascotas</h2>
+    <nav>
+      <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="clientes.html"><i class="fa-solid fa-user"></i> Clientes</a>
+      <a href="cuentas.html"><i class="fa-solid fa-user-gear"></i> Cuentas</a>
+      <a href="servicios.html"><i class="fa-solid fa-briefcase-medical"></i> Servicios</a>
+    </nav>
+    <footer><p style="font-size:.8rem;">Veterinaria I LOVE ANIMALS © 2025</p></footer>
+  </div>
+
+  <div class="panel">
+    <header>
+      <h1><i class="fa-solid fa-dog"></i> Gestión de Mascotas</h1>
+      <button class="menu-toggle" type="button"><i class="fa-solid fa-bars"></i></button>
+    </header>
+
+    <div style="margin: 1rem 0;">
+      <button class="btn-agregar" type="button" onclick="location.href='add_mascota.html'">
+        <i class="fa-solid fa-plus"></i> Agregar Mascota
+      </button>
+    </div>
+<div class="toolbar" style="margin:1rem 0; display:flex; gap:.5rem; align-items:center;">
+  <label for="q" style="font-weight:600;">
+    <i class="fa-solid fa-magnifying-glass"></i> Buscar por teléfono:
+  </label>
+  <input id="q" type="tel" inputmode="tel" placeholder="Ej. 5512345678" style="max-width:320px; width:100%;">
+</div>
+
+    <table id="tablaMascotas">
+<thead>
+  <tr>
+    <th>Foto</th>
+    <th>Nombre</th>
+    <th>Especie</th>
+    <th>Raza</th>
+    <th>Descripcion</th>
+    <th>Dueño (tel)</th>
+    
+    <th>Acciones</th>
+  </tr>
+</thead>
+
+      <tbody></tbody>
+    </table>
+
+    <footer><p>@ FistPump, 2025</p></footer>
+  </div>
+
+  <!-- Claves Supabase -->
+<script src="../controlador/config.js"></script>
+<script type="module" src="../controlador/mascotas.js"></script>
+
+</body>
+</html>

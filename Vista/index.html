@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Veterinary - Inicio admin</title>
+  <link rel="stylesheet" href="../modelo/css/stiles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="index">
+
+
+  <!-- Sidebar izquierdo -->
+  <div class="sidebar">
+    <h2>Menú Principal</h2>
+    <nav>
+      <a href="clientes.html"><i class="fa-solid fa-user"></i> Clientes</a>
+      <a href="mascotas.html"><i class="fa-solid fa-dog"></i> Mascotas</a>
+      <a href="cuentas.html"><i class="fa-solid fa-user-gear"></i> Cuentas</a>
+      <a href="servicios.html"><i class="fa-solid fa-briefcase-medical"></i> Servicios</a>
+      <a href="admin_requests.html"><i class="fa-solid fa-envelope"></i> Solicitudes</a>
+      <a href="login.html"><i class="fa-solid fa-user-gear"></i>cerrarSesion</a>
+      
+    </nav>
+    <footer>
+      <p style="font-size: 0.8rem;">Veterinaria I LOVE ANIMALS © 2025</p>
+    </footer>
+  </div>
+
+  <!-- Panel derecho -->
+  <div class="panel">
+    <header>
+      <button class="menu-toggle" onclick="toggleMenu()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <h1><img src="../modelo/imagenes/logoveterinaryBlanco.jpg" alt="logo" class="logito"> CLÍNICA DE ANIMALES VETERINARY
+      </h1>
+
+    </header>
+
+    <section>
+      <h2>Bienvenido al sistema de gestión veterinaria</h2>
+      <p>Selecciona una sección desde el menú para comenzar.</p>
+    </section>
+
+    <footer>
+      <p>@ FistPump, 2025</p>
+    </footer>
+  </div>
+
+
+  
+<script src="../controlador/index.js" defer></script>
+</body>
+</html>

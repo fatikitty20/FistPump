@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agregar/Editar Cuenta</title>
+  <link rel="stylesheet" href="../modelo/css/stiles.css" />
+</head>
+<body>
+  <div class="panel">
+    <h2>Formulario de Cuenta</h2>
+
+    <form id="frmCuenta" novalidate>
+      <input type="hidden" id="id" />
+
+      <label>Nombre<br>
+        <input type="text" id="nombre" required>
+      </label><br>
+
+      <label>Teléfono<br>
+        <input type="tel" id="telefono" required>
+      </label><br>
+
+      <label>Email<br>
+        <input type="email" id="email" required>
+      </label><br>
+
+      <label>Rol<br>
+        <select id="rol_id" required>
+          <option value="">Cargando roles…</option>
+        </select>
+      </label><br>
+
+      <!-- La contraseña es opcional en tu tabla -->
+      <label>Contraseña (opcional)<br>
+        <input type="password" id="contrasena">
+      </label><br>
+
+      <button type="submit">Guardar</button>
+      <button type="button" onclick="location.href='cuentas.html'">Cancelar</button>
+    </form>
+  </div>
+
+  <script src="../controlador/config.js"></script>
+  <script type="module" src="../modelo/add_cuenta.js"></script>
+</body>
+</html>

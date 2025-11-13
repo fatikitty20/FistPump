@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agregar/Editar Servicio</title>
+  <link rel="stylesheet" href="../modelo/css/stiles.css" />
+</head>
+<body>
+  <div class="panel">
+    <h2>Servicio</h2>
+    <form id="frmServicio">
+      <input type="hidden" id="id" />
+      <label>Nombre<br><input type="text" id="nombre" required></label><br><br>
+      <label>Descripción<br><textarea id="descripcion" rows="3"></textarea></label><br><br>
+      <label>Costo (MXN)<br><input type="number" id="costo" step="0.01" min="0" required></label><br><br>
+      <label>Duración (minutos)<br><input type="number" id="duracion" min="0" step="1" required></label><br><br>
+      <button type="submit">Guardar</button>
+      <button type="button" onclick="location.href='servicios.html'">Cancelar</button>
+    </form>
+  </div>
+
+  <script src="../controlador/config.js"></script>
+  <script type="module" src="../modelo/add_servicio.js"></script>
+</body>
+</html>

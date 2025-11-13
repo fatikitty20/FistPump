@@ -1,0 +1,159 @@
+/* === Estilos generales === */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+/* === Sidebar izquierdo: navegación y subtemas === */
+.sidebar {
+  width: 250px;
+  background-color: #1e3a5f;
+  color: white;
+  padding: 1.5rem;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar h2 { font-size: 1.2rem; margin-bottom: 1rem; }
+
+.sidebar nav a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+.sidebar nav a:hover { background-color: #2e5a8c; }
+
+/* === Panel derecho === */
+.panel {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel header {
+  display:flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-direction: row-reverse;
+}
+
+.panel header h1 { font-size: 1.5rem; color: #1e3a5f; }
+.logito { width: 70px; height: 70px; margin-right: 0.5rem; vertical-align: middle; object-fit: contain; }
+.menu-toggle { background: none; border: none; font-size: 1.5rem; color: #1e3a5f; cursor: pointer; }
+
+/* === Bienvenida index === */
+body.index .panel header h1 { font-size: 1.8rem; color: #1e3a5f; }
+body.index .panel section {
+  background-color: white; padding: 2rem; border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 700px; margin: auto; text-align: center;
+}
+body.index .panel section h2 { font-size: 1.6rem; margin-bottom: 1rem; color: #2e5a8c; }
+body.index .panel section p { font-size: 1.1rem; color: #555; }
+
+/* === Formularios === */
+form {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+form input, form select, form textarea, form button {
+  display: block; width: 100%; margin: 0.75rem 0; padding: 0.75rem;
+  border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;
+}
+form button {
+  background-color: #1e3a5f; color: white; border: none; cursor: pointer; transition: background 0.3s;
+}
+form button:hover { background-color: #2e5a8c; }
+
+/* === Tablas === */
+table {
+  width: 100%; border-collapse: collapse; background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-top: 1rem;
+}
+.foto-mascota { width: 80px; height: 80px; object-fit: cover; border: 2px solid #ccc; }
+thead { background-color: #1e3a5f; color: white; }
+th, td { padding: 0.75rem; border: 1px solid #ddd; text-align: left; }
+
+/* === Colores por sección === */
+body.clientes .panel header h1,
+body.mascotas .panel header h1,
+body.cuentas .panel header h1,
+body.servicios .panel header h1 { color: #1e3a5f; }
+
+body.mascotas form button,
+body.cuentas form button,
+body.servicios form button { background-color: #1e3a5f; }
+
+body.mascotas form button:hover,
+body.cuentas form button:hover,
+body.servicios form button:hover { background-color: #d81b60; }
+
+/* === Calendario semanal === */
+.calendario {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 1rem; margin-top: 2rem;
+}
+.dia {
+  background-color: #c9d7eb; padding: 1rem; border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); min-height: 150px;
+}
+.dia h3 { margin-top: 0; color: #1e3a5f; font-size: 1.1rem; margin-bottom: 0.5rem; }
+
+/* === Tarjeta de cita === */
+.evento {
+  background-color: #ffffff;
+  /* border-left: 4px solid #2e588f;  <- lo desactivamos para usar la barra con ::before */
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  font-size: 0.95rem;
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Barra de estado a la izquierda (controlada por clases) */
+.evento::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background: var(--barra-color, #dc2626); /* rojo por defecto */
+}
+
+/* Estados */
+.evento.is-pending   { --barra-color: #dc2626; } /* rojo */
+.evento.is-completed { --barra-color: #16a34a; } /* verde */
+
+.evento-descripcion { font-size: .9em; opacity: .8; }
+
+.acciones {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+/* (Tu regla anterior) */
+.evento span { display: block; font-weight: bold; color: #d81b60; margin-bottom: 0.25rem; }

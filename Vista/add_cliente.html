@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Agregar / Editar Cliente</title>
+  <link rel="stylesheet" href="../modelo/css/stiles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="clientes">
+  <div class="panel" style="max-width: 720px; margin: 2rem auto;">
+    <header style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;">
+      <a href="clientes.html" class="btn-volver"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+      <h1 style="margin:0;">Formulario de Cliente</h1>
+    </header>
+
+    <form id="frmCliente" class="card" style="padding:1rem">
+      <!-- Guarda el teléfono original para edición -->
+      <input type="hidden" id="telOriginal">
+
+      <label>Nombre
+        <input type="text" id="nombre" required autocomplete="off">
+      </label>
+
+      <label>Apellido paterno
+        <input type="text" id="paterno" autocomplete="off">
+      </label>
+
+      <label>Apellido materno
+        <input type="text" id="materno" autocomplete="off">
+      </label>
+
+      <label>Teléfono
+        <input type="text" id="telefono" required autocomplete="off">
+      </label>
+
+      <label>Email
+        <input type="email" id="email" required autocomplete="off">
+      </label>
+
+      <div style="display:flex;gap:.5rem;justify-content:stretch;margin-top:1rem;">
+        <button type="submit" class="btn-prim" style="flex:1">Guardar</button>
+        <a href="clientes.html" class="btn-sec" style="flex:1;text-align:center;">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- SOLO estos scripts aquí -->
+  <script src="../controlador/config.js"></script>
+  <script type="module" src="../modelo/add_cliente.js"></script>
+</body>
+</html>
